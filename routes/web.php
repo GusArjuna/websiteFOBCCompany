@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\comproDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('compro.dashboard',[
+        "title" => "Dashboard"
+    ]);
+});
+
+Route::controller(comproDashboardController::class)->group(function () {
+    Route::get('/', 'index')->middleware('guest');
+    Route::get('/products', 'product')->middleware('guest');
+    Route::get('/shipping', 'shipping')->middleware('guest');
+    Route::get('/country', 'country')->middleware('guest');
 });
