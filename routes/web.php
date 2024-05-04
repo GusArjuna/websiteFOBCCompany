@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\comproDashboardController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +27,17 @@ Route::controller(comproDashboardController::class)->group(function () {
     Route::get('/products', 'product')->middleware('guest');
     Route::get('/shipping', 'shipping')->middleware('guest');
     Route::get('/country', 'country')->middleware('guest');
+});
+
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'login')->middleware('guest');
+});
+
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/base/dashboard', 'dashboard');
+    // Route::get('/base/dashboard', 'dashboard')->middleware('auth');
+});
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/base/product', 'index');
 });

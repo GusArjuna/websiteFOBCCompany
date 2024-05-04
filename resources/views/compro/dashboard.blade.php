@@ -145,7 +145,6 @@
   <!-- ======= Call To Action Section ======= -->
   <section id="call-to-action" class="call-to-action">
     <div class="container" data-aos="zoom-out">
-
       <div class="row justify-content-center">
         <div class="col-lg-8 text-center">
           <h3>Make A Deal</h3>

@@ -103,9 +103,7 @@
             <strong>Phone:</strong> +62-8123035842<br>
             <strong>Email:</strong> lulu@bp-pac.net<br>
           </p>
-
         </div>
-
       </div>
     </div>
 
@@ -146,7 +144,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <form action="" method="post">
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-text" id="basic-addon1">@</span>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
