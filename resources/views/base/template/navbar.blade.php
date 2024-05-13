@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{{ url('Base/vendors/flag-icon-css/css/flag-icon.min.css')}}">
   <link rel="stylesheet" href="{{ url('Base/vendors/jvectormap/jquery-jvectormap.css')}}">
   <link rel="stylesheet" href="{{ url('Base/css/demo/style.css')}}">
+  <link rel="stylesheet" href="{{ url('Base/bootstrap/css/bootstrap.css')}}">
   <link rel="shortcut icon" href="{{url('FOBC Logo.ico')}}" />
 </head>
 <body>
@@ -37,9 +38,9 @@
               </a>
             </div>
             <div class="mdc-list-item mdc-drawer-item">
-              <a class="mdc-drawer-link" href="{{ url('/base/destination') }}">
+              <a class="mdc-drawer-link" href="{{ url('/base/country') }}">
                 <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">explore</i>
-                Destination Point
+                Destination Country
               </a>
             </div>
             <div class="mdc-list-item mdc-drawer-item">
@@ -66,17 +67,7 @@
           <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
             <span class="mdc-top-app-bar__title">{{ $pages }}!</span>
-            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon search-text-field d-none d-md-flex">
-              <i class="material-icons mdc-text-field__icon">search</i>
-              <input class="mdc-text-field__input" id="text-field-hero-input">
-              <div class="mdc-notched-outline">
-                <div class="mdc-notched-outline__leading"></div>
-                <div class="mdc-notched-outline__notch">
-                  <label for="text-field-hero-input" class="mdc-floating-label">Search..</label>
-                </div>
-                <div class="mdc-notched-outline__trailing"></div>
-              </div>
-            </div>
+            @yield('search')
           </div>
           <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section-right">
             <div class="menu-button-container menu-profile d-none d-md-block">
@@ -85,19 +76,21 @@
                   <span class="figure">
                     <img src="{{ url('Base/images/faces/face1.jpg')}}" alt="user" class="user">
                   </span>
-                  <span class="user-name">Clyde Miles</span>
+                  <span class="user-name">Admin 1</span>
                 </span>
               </button>
               <div class="mdc-menu mdc-menu-surface" tabindex="-1">
                 <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
-                  <li class="mdc-list-item" role="menuitem">
-                    <div class="item-thumbnail item-thumbnail-icon-only">
-                      <i class="mdi mdi-settings-outline text-primary"></i>                      
-                    </div>
-                    <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="item-subject font-weight-normal">Logout</h6>
-                    </div>
-                  </li>
+                  <a href="{{ url('/login') }}" style="display: flex; align-items: center; text-decoration: none;">
+                    <li class="mdc-list-item" role="menuitem">
+                      <div class="item-thumbnail item-thumbnail-icon-only">
+                        <i class="mdi mdi-settings-outline text-primary"></i>                      
+                      </div>
+                      <div class="item-content d-flex align-items-start flex-column justify-content-center">
+                        <h6 class="item-subject font-weight-normal">Logout</h6>
+                      </div>
+                    </li>
+                  </a>
                 </ul>
               </div>
             </div>
@@ -110,35 +103,15 @@
                 </span>
               </button>
               <div class="mdc-menu mdc-menu-surface" tabindex="-1">
-                <h6 class="title"><i class="mdi mdi-email-outline mr-2 tx-16"></i> Messages</h6>
                 <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
                   <li class="mdc-list-item" role="menuitem">
-                    <div class="item-thumbnail">
-                      <img src="{{ url('Base/images/faces/face4.jpg')}}" alt="user">
+                    <div class="item-thumbnail item-thumbnail-icon-only">
+                      <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">person_add</i>   
                     </div>
                     <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="item-subject font-weight-normal">Mark send you a message</h6>
-                      <small class="text-muted"> 1 Minutes ago </small>
+                      <h6 class="item-subject font-weight-normal">New deal from a customer!</h6>
                     </div>
-                  </li>
-                  <li class="mdc-list-item" role="menuitem">
-                    <div class="item-thumbnail">
-                      <img src="{{ url('Base/images/faces/face2.jpg')}}" alt="user">
-                    </div>
-                    <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="item-subject font-weight-normal">Cregh send you a message</h6>
-                      <small class="text-muted"> 15 Minutes ago </small>
-                    </div>
-                  </li>
-                  <li class="mdc-list-item" role="menuitem">
-                    <div class="item-thumbnail">
-                      <img src="{{ url('Base/images/faces/face3.jpg')}}" alt="user">
-                    </div>
-                    <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="item-subject font-weight-normal">Profile picture updated</h6>
-                      <small class="text-muted"> 18 Minutes ago </small>
-                    </div>
-                  </li>                
+                  </li>              
                 </ul>
               </div>
             </div>
@@ -155,10 +128,10 @@
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-          <span class="text-center text-sm-left d-block d-sm-inline-block tx-14">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2020</span>
+          <span class="text-center text-sm-left d-block d-sm-inline-block tx-14">Copyright © PT. Fish On Bait Company Asia 2024</span>
         </div>
         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop d-flex justify-content-end">
-          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center tx-14">Free <a href="https://www.bootstrapdash.com/material-design-dashboard/" target="_blank"> material admin </a> dashboards from Bootstrapdash.com</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center tx-14">Only Admin can Access This Page</span>
         </div>
       </div>
     </div>

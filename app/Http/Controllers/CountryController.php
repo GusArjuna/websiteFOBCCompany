@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\product;
-use App\Http\Requests\StoreproductRequest;
-use App\Http\Requests\UpdateproductRequest;
+use App\Models\country;
+use App\Http\Requests\StorecountryRequest;
+use App\Http\Requests\UpdatecountryRequest;
 
-class ProductController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-            return view("base.productfile.home",[
-                "title" => "FOBC ASIA Admin || Product",
-                "pages" => "Product Page",
-            ]);
+        return view("base.countryfile.home",[
+            "title" => "FOBC ASIA Admin || Destination Country",
+            "pages" => "Country Page",
+        ]);
     }
 
     /**
@@ -30,7 +30,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreproductRequest $request)
+    public function store(StorecountryRequest $request)
     {
         //
     }
@@ -38,7 +38,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(product $product)
+    public function show(country $country)
     {
         //
     }
@@ -46,7 +46,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(product $product)
+    public function edit(country $country)
     {
         //
     }
@@ -54,7 +54,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateproductRequest $request, product $product)
+    public function update(UpdatecountryRequest $request, country $country)
     {
         //
     }
@@ -62,7 +62,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(product $product)
+    public function destroy(country $country)
     {
         //
     }

@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\baseDashboard;
 use App\Http\Controllers\comproDashboardController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\ExpeditionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,11 +37,25 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'login')->middleware('guest');
 });
 
-Route::controller(LoginController::class)->group(function () {
+Route::controller(baseDashboard::class)->group(function () {
     Route::get('/base/dashboard', 'dashboard');
     // Route::get('/base/dashboard', 'dashboard')->middleware('auth');
 });
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('/base/product', 'index');
+});
+
+Route::controller(ExpeditionController::class)->group(function () {
+    Route::get('/base/expedition', 'index');
+});
+
+Route::controller(CountryController::class)->group(function () {
+    Route::get('/base/country', 'index');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/base/user', 'index');
+    Route::get('/base/user/add', 'create');
+    Route::post('/base/user/add', 'store');
 });
