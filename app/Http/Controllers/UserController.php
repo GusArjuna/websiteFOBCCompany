@@ -15,6 +15,7 @@ class UserController extends Controller
         return view("base.userfile.home",[
             "title" => "FOBC ASIA Admin || User Admin",
             "pages" => "User Admin",
+            "users" => User::all(),
         ]);
     }
 
@@ -32,7 +33,17 @@ class UserController extends Controller
     
      public function store(Request $request)
     {
-        dd($request);
+        if(!$request['status']){$request['status']='off';}
+        $validatedData = $request->validate([
+            'username' => 'required',
+            'status' => 'required',
+            'password' => 'required',
+        ]);
+
+        $validatedData['password']=bcrypt($validatedData['password']);
+        
+        User::create($validatedData);
+        return redirect('/base/user')->with('success','Data Ditambahkan');
     }
 
     /**

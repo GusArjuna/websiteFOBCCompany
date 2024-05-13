@@ -24,28 +24,38 @@
               <i class="material-icons mdc-button__icon">add</i>
             </a>
           </div>
+          @if (session()->has('success'))
+          <div class="alert alert-success">{{ session('success') }}</div>
+          @endif
           <div class="table-responsive">
             <table class="table table-hoverable">
               <thead>
                 <tr>
+                  <th style="width: 50px;">No</th>
                   <th class="text-left">Name</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="text-left">Adminlog</td>
-                  <td>Active</td>
-                  <td>
-                    <button class="mdc-button mdc-button--raised icon-button filled-button--warning">
-                      <i class="material-icons mdc-button__icon">colorize</i>
-                    </button>
-                    <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
-                      <i class="material-icons mdc-button__icon">delete</i>
-                    </button>
-                  </td>
-                </tr>
+                @foreach ($users as $user)
+                  <tr>
+                    <td style="width: 50px;">{{ $loop->iteration }}</td>
+                    <td class="text-left">{{ $user->username }}</td>
+                    <td>
+                      {!! $user->status == 'on' ? '<p class="mdc-typography mdc-theme--success">Active</p>' : '<p class="mdc-typography mdc-theme--danger">Inactive</p>' !!}
+                    </td>                  
+                    <td class="d-flex justify-content-end">
+                      <a href="/base/user/{{ $user->id }}" class="mdc-button mdc-button--raised icon-button filled-button--warning">
+                        <i class="material-icons mdc-button__icon">colorize</i>
+                      </a>
+                      <form action="/base/user/{{ $user->id }}/delete" method="post"></form>
+                      <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
+                        <i class="material-icons mdc-button__icon">delete</i>
+                      </button>
+                    </td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

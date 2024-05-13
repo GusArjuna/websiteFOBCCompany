@@ -27,35 +27,36 @@ Route::get('/', function () {
 });
 
 Route::controller(comproDashboardController::class)->group(function () {
-    Route::get('/', 'index')->middleware('guest');
-    Route::get('/products', 'product')->middleware('guest');
-    Route::get('/shipping', 'shipping')->middleware('guest');
-    Route::get('/country', 'country')->middleware('guest');
+    Route::get('/', 'index');
+    Route::get('/products', 'product');
+    Route::get('/shipping', 'shipping');
+    Route::get('/country', 'country');
 });
 
 Route::controller(LoginController::class)->group(function () {
-    Route::get('/login', 'login')->middleware('guest');
+    Route::get('/login', 'login')->middleware('guest')->name('login');
+    Route::post('/login', 'authenticate')->middleware('guest');
+    Route::post('/base/logout', 'logout');
 });
 
 Route::controller(baseDashboard::class)->group(function () {
-    Route::get('/base/dashboard', 'dashboard');
-    // Route::get('/base/dashboard', 'dashboard')->middleware('auth');
+    Route::get('/base/dashboard', 'dashboard')->middleware('auth');
 });
 
 Route::controller(ProductController::class)->group(function () {
-    Route::get('/base/product', 'index');
+    Route::get('/base/product', 'index')->middleware('auth');
 });
 
 Route::controller(ExpeditionController::class)->group(function () {
-    Route::get('/base/expedition', 'index');
+    Route::get('/base/expedition', 'index')->middleware('auth');
 });
 
 Route::controller(CountryController::class)->group(function () {
-    Route::get('/base/country', 'index');
+    Route::get('/base/country', 'index')->middleware('auth');
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/base/user', 'index');
-    Route::get('/base/user/add', 'create');
-    Route::post('/base/user/add', 'store');
+    Route::get('/base/user', 'index')->middleware('auth');
+    Route::get('/base/user/add', 'create')->middleware('auth');
+    Route::post('/base/user/add', 'store')->middleware('auth');
 });

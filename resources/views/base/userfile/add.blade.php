@@ -12,14 +12,20 @@
               <div class="row g-3">
                 <div class="col-md-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control form-control-sm mb-3"  placeholder="" name="username" value="">
+                        <input type="text" class="form-control form-control-sm mb-3"  placeholder="" name="username" value="{{ old('username') }}" required autofocus>
                         <label for="">Username</label>
+                        @error('username')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating">
-                        <input type="password" class="form-control form-control-sm mb-3" placeholder="" name="password" value="">
+                        <input type="password" class="form-control form-control-sm mb-3" placeholder="" name="password" value="{{ old('password') }}" required>
                         <label for="">Password</label>
+                        @error('password')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-4 d-flex align-items-center justify-content-start">
