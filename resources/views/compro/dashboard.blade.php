@@ -89,6 +89,16 @@
                 <p>At Fish On Bait Company Asia, we're your trusted seafood partner. With a reputation built on reliability and integrity, we deliver quality products and excellent service every time.</p>
               </div>
             </li>
+            <li data-aos="fade-up" data-aos-delay="400">
+              {{-- <i class="bi bi-check-network"></i> --}}
+              <i class="material-symbols-outlined mt-3">
+                priority
+              </i>
+              <div>
+                <h5>Vission and Mission</h5>
+                <p>Becoming a world-class seafood processor that provides the highest quality and diverse products at competitive prices to the entire world.</p>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
