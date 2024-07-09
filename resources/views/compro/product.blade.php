@@ -127,7 +127,8 @@
         <div class="col-lg-8 text-center">
           <h3>Make A Deal</h3>
           <p> Make a deal! Simply fill out the form and await our prompt contact regarding shipping arrangements.</p>
-          <a class="cta-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Make A Deal!</a>
+          <a class="cta-btn" href="/makeadeal">Make A Deal!</a>
+          {{-- <a class="cta-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Make A Deal!</a> --}}
         </div>
       </div>
 

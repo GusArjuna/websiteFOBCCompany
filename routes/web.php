@@ -31,6 +31,7 @@ Route::controller(comproDashboardController::class)->group(function () {
     Route::get('/products', 'product');
     Route::get('/shipping', 'shipping');
     Route::get('/country', 'country');
+    Route::get('/makeadeal', 'makeadeal');
 });
 
 Route::controller(LoginController::class)->group(function () {

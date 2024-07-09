@@ -16,6 +16,7 @@ class ProductController extends Controller
             return view("base.productfile.home",[
                 "title" => "FOBC ASIA Admin || Product",
                 "pages" => "Product Page",
+                "products" => product::all(),
             ]);
     }
 

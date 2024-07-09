@@ -16,6 +16,7 @@ class CountryController extends Controller
         return view("base.countryfile.home",[
             "title" => "FOBC ASIA Admin || Destination Country",
             "pages" => "Country Page",
+            "countries" => country::all(),
         ]);
     }
 

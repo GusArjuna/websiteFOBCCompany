@@ -33,4 +33,10 @@ class comproDashboardController extends Controller
             "pages" => "shipping",
         ]);
     }
+    public function makeadeal(){
+        return view("compro.makeadeal",[
+            "title" => "FOBC ASIA || Make a Deal",
+            "pages" => "Make a Deal",
+        ]);
+    }
 }

@@ -25,6 +25,10 @@
   <link href="{{ url('CP/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
   <link href="{{ url('CP/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
   <link href="{{ url('CP/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- intl-tel-input CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+
 
   <!-- Template Main CSS File -->
   <link href="{{ url('CP/css/main.css')}}" rel="stylesheet">
@@ -132,6 +136,14 @@
 
   <!-- Template Main JS File -->
   <script src="{{ url('CP/js/main.js') }}"></script>
+   <!-- jQuery -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <!-- intl-tel-input JS -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+   <!-- Bootstrap JS and dependencies -->
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   @yield('java')
 
   <!-- Button trigger modal -->
 
@@ -158,7 +170,6 @@
       </div>
     </div>
   </div>
-
 </body>
 
 </html>

@@ -19,7 +19,7 @@
       <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
         <div class="mdc-card p-0">
           <div class="d-flex justify-content-between align-items-center">
-            <h6 class="card-title card-padding pb-0">Product Table</h6>
+            <h6 class="card-title card-padding pb-0">Admin List</h6>
             <a href="{{ url('/base/user/add') }}"  class="mdc-button mdc-menu-button mdc-button--raised icon-button shaped-button secondary-filled-button mr-4">
               <i class="material-icons mdc-button__icon">add</i>
             </a>
@@ -45,14 +45,15 @@
                     <td>
                       {!! $user->status == 'on' ? '<p class="mdc-typography mdc-theme--success">Active</p>' : '<p class="mdc-typography mdc-theme--danger">Inactive</p>' !!}
                     </td>                  
-                    <td class="d-flex justify-content-end">
-                      <a href="/base/user/{{ $user->id }}" class="mdc-button mdc-button--raised icon-button filled-button--warning">
+                    <td class="text-right">
+                      <a href="/base/user/{{ $user->id }}" class="mdc-button mdc-button--raised icon-button filled-button--warning mr-2">
                         <i class="material-icons mdc-button__icon">colorize</i>
                       </a>
-                      <form action="/base/user/{{ $user->id }}/delete" method="post"></form>
-                      <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
-                        <i class="material-icons mdc-button__icon">delete</i>
-                      </button>
+                      <form action="/base/user/{{ $user->id }}/delete" method="post" class="d-inline">
+                        <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
+                          <i class="material-icons mdc-button__icon">delete</i>
+                        </button>
+                      </form>
                     </td>
                   </tr>
                 @endforeach
