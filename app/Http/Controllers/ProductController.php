@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\product;
 use App\Http\Requests\StoreproductRequest;
 use App\Http\Requests\UpdateproductRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -36,7 +37,6 @@ class ProductController extends Controller
      */
     public function store(StoreproductRequest $request)
     {
-        
         if (!isset($request->available)) {
             $request->merge(['available' => 0]);
         } else {
@@ -48,7 +48,11 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => 'required',
             'available' => 'required',
+            'image' => 'image',
         ]);        
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('Images');
+        }
         $validatedData['price'] = $price;
         
         product::create($validatedData);
@@ -91,8 +95,15 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'price' => 'required',
+            'image' => 'image',
             'available' => 'required',
         ]);        
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }             
+            $validatedData['image'] = $request->file('image')->store('Images');
+        }
         $validatedData['price'] = $price;
         
         product::where('id',$product->id)
@@ -105,6 +116,9 @@ class ProductController extends Controller
      */
     public function destroy(product $product)
     {
+        if ($product->image) {
+            Storage::delete($product->image);
+        }
         product::destroy($product->id);
         return redirect('/base/product')->with('success','Data Dihapus');
     }

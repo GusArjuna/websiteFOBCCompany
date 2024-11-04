@@ -32,8 +32,8 @@
               <thead>
                 <tr>
                   <th class="text-left">Nation</th>
-                  <th>District</th>
-                  <th>Image</th>
+                  <th class="text-left">District</th>
+                  <th class="text-left">Image</th>
                   <th>Available</th>
                   <th>Action</th>
                 </tr>
@@ -42,8 +42,14 @@
                 @foreach ($countries as $country)
                   <tr>
                     <td class="text-left">{{ $country->nation }}</td>
-                    <td>{{ $country->district }}</td>                
-                    <td></td>                
+                    <td class="text-left">{{ $country->district }}</td>                
+                    <td class="text-left">
+                    @if ($country->image)
+                      <img src="{{ asset('storage/'.$country->image) }}" alt="" style="width: 150px">
+                    @else
+                        <img src="{{ url('CP/img/frozen.png') }}" alt="" style="width: 150px">
+                    @endif
+                  </td>                
                     <td>
                       {!! $country->available == 1 ? '<p class="mdc-typography mdc-theme--success">Active</p>' : '<p class="mdc-typography mdc-theme--danger">Inactive</p>' !!}
                     </td>  

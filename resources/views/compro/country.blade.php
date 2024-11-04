@@ -78,7 +78,11 @@
         @foreach ($countries as $country)
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="member">
-              <img src="{{ url('CP/img/auckland.jpeg')}}" class="img-fluid" style="height: 300px; width:400px" alt="">
+              @if ($country->image)
+                  <img src="{{ asset('storage/'.$country->image) }}" class="img-fluid" alt="" alt="" style="height: 250px; width:400px">
+              @else
+                  <img src="{{ url('CP/img/frozen.png') }}" class="img-fluid" alt="" alt="" style="height: 250px; width:400px">
+              @endif
               <div class="member-content">
                 <h4>{{ $country->district }}</h4>
                 <span>{{ $country->nation }}</span>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\expedition;
 use App\Http\Requests\StoreexpeditionRequest;
 use App\Http\Requests\UpdateexpeditionRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ExpeditionController extends Controller
 {
@@ -42,10 +43,13 @@ class ExpeditionController extends Controller
             $request->merge(['available' => 1]);
         }       
         $validatedData = $request->validate([
-            'nation' => 'required',
-            'district' => 'required',
+            'name' => 'required',
+            'image' => 'image',
             'available' => 'required',
         ]);
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('Images');
+        }
         
         expedition::create($validatedData);
         return redirect('/base/expedition')->with('success','Data Ditambahkan');
@@ -83,10 +87,16 @@ class ExpeditionController extends Controller
         }       
         
         $validatedData = $request->validate([
-            'nation' => 'required',
-            'district' => 'required',
+            'name' => 'required',
+            'image' => 'image',
             'available' => 'required',
         ]);
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }             
+            $validatedData['image'] = $request->file('image')->store('Images');
+        }
         
         expedition::where('id',$expedition->id)
                 ->update($validatedData);
@@ -98,6 +108,9 @@ class ExpeditionController extends Controller
      */
     public function destroy(expedition $expedition)
     {
+        if ($expedition->image) {
+            Storage::delete($expedition->image);
+        }
         expedition::destroy($expedition->id);
         return redirect('/base/expedition')->with('success','Data Dihapus');
     }

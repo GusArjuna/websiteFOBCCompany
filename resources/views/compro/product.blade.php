@@ -78,7 +78,11 @@
         @foreach ($products as $product)
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="member">
-              <img src="{{ url('CP/img/frozen.png')}}" class="img-fluid" alt="" style="height: 250px; width:400px">
+              @if ($product->image)
+                  <img src="{{ asset('storage/'.$product->image) }}" class="img-fluid" alt="" alt="" style="height: 250px; width:400px">
+              @else
+                  <img src="{{ url('CP/img/frozen.png') }}" class="img-fluid" alt="" alt="" style="height: 250px; width:400px">
+              @endif
               <div class="member-content">
                 <h4>{{ $product->name }}</h4>
                 <span>Start From Rp. {{ $product->price }} / box</span>

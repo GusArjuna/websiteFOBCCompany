@@ -32,8 +32,8 @@
               <thead>
                 <tr>
                   <th class="text-left">Name</th>
-                  <th>image</th>
-                  <th>Available</th>
+                  <th class="text-left">image</th>
+                  <th class="text-left">Available</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -41,8 +41,14 @@
                 @foreach ($Expeditions as $expedition)
                   <tr>
                     <td class="text-left">{{ $expedition->name }}</td>
-                    <td></td>                
-                    <td>
+                    <td class="text-left">
+                      @if ($expedition->image)
+                          <img src="{{ asset('storage/'.$expedition->image) }}" alt="" style="width: 150px">
+                      @else
+                          <img src="{{ url('CP/img/frozen.png') }}" alt="" style="width: 150px">
+                      @endif
+                    </td>                
+                    <td class="text-left">
                       {!! $expedition->available == 1 ? '<p class="mdc-typography mdc-theme--success">Active</p>' : '<p class="mdc-typography mdc-theme--danger">Inactive</p>' !!}
                     </td>  
                     <td class="text-right">

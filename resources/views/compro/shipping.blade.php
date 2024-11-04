@@ -78,7 +78,11 @@
         @foreach ($expeditions as $expedition)
           <div class="col-lg-4 col-md-6 d-flex">
             <div class="member">
-              <img src="{{ url('CP/img/maersk.jpg')}}" class="img-fluid" alt="">
+              @if ($expedition->image)
+                  <img src="{{ asset('storage/'.$expedition->image) }}" class="img-fluid" alt="" alt="" style="height: 250px; width:400px">
+              @else
+                  <img src="{{ url('CP/img/frozen.png') }}" class="img-fluid" alt="" alt="" style="height: 250px; width:400px">
+              @endif
               <div class="member-content">
                 <h4>{{ $expedition->name }}</h4>
                 <p>

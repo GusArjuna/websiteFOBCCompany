@@ -147,5 +147,17 @@
 <script src="{{ url('Base/js/material.js')}}"></script>
 <script src="{{ url('Base/js/misc.js')}}"></script>
 <script src="{{ url('Base/js/dashboard.js')}}"></script>
+<script>
+  function previewImage(){
+    const image = document.querySelector('#image');
+    const imgPreview = document.querySelector('.img-preview');
+    imgPreview.style.display = 'block';
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(image.files[0]);
+    oFReader.onload = function(oFREvent){
+      imgPreview.src = oFREvent.target.result;
+    }
+  }
+</script>
 </body>
 </html> 

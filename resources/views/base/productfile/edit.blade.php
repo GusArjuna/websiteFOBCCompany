@@ -7,7 +7,7 @@
         <div class="mdc-card">
           <h6 class="card-title">Edit Product</h6>
           <div class="template-demo">
-            <form action="/base/product/{{ $product->id }}" method="post" class="mt-4">
+            <form action="/base/product/{{ $product->id }}" method="post" class="mt-4" enctype="multipart/form-data">
               @csrf
               @method('patch')
               <div class="row g-3">
@@ -38,7 +38,20 @@
                   </div>
                 </div>           
               </div>
-              
+              <div style="width: 300px">
+                <label for="iamge" class="form-label">Image</label>
+                {{-- img preview css dan onchange bikin sendiri --}}
+                <input type="hidden" name="oldImage" value="{{ $product->image }}">
+                @if ($product->image)  
+                  <img src="{{ asset('storage/'.$product->image) }}" class="img-preview img-fluid">
+                @else
+                  <img class="img-preview img-fluid">
+                @endif
+                <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
+                @error('image')
+                  <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+              </div>
               <button type="submit" class="mdc-button mdc-button--outlined mdc-button--dense mdc-ripple-upgraded mt-4">
                 Submit
               </button>

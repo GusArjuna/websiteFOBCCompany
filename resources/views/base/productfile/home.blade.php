@@ -32,8 +32,8 @@
               <thead>
                 <tr>
                   <th class="text-left">Name</th>
-                  <th>Photo</th>
-                  <th>Price</th>
+                  <th class="text-left">Photo</th>
+                  <th class="text-left">Price</th>
                   <th>Available</th>
                   <th>Action</th>
                 </tr>
@@ -42,8 +42,14 @@
                 @foreach ($products as $product)
                   <tr>
                     <td class="text-left">{{ $product->name }}</td>
-                    <td></td>                                
-                    <td>{{ $product->price }}</td>                  
+                    <td class="text-left">
+                      @if ($product->image)
+                          <img src="{{ asset('storage/'.$product->image) }}" alt="" style="width: 150px">
+                      @else
+                          <img src="{{ url('CP/img/frozen.png') }}" alt="" style="width: 150px">
+                      @endif
+                    </td>                                
+                    <td class="text-left">{{ $product->price }}</td>                  
                     <td>
                       {!! $product->available == 1 ? '<p class="mdc-typography mdc-theme--success">Available</p>' : '<p class="mdc-typography mdc-theme--danger">Not Available</p>' !!}
                     </td>                  

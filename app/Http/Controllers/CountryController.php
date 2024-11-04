@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\country;
 use App\Http\Requests\StorecountryRequest;
 use App\Http\Requests\UpdatecountryRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CountryController extends Controller
 {
@@ -42,9 +43,14 @@ class CountryController extends Controller
             $request->merge(['available' => 1]);
         }       
         $validatedData = $request->validate([
-            'name' => 'required',
+            'nation' => 'required',
+            'district' => 'required',
             'available' => 'required',
+            'image' => 'image',
         ]);
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('Images');
+        }
         
         country::create($validatedData);
         return redirect('/base/country')->with('success','Data Ditambahkan');
@@ -82,9 +88,17 @@ class CountryController extends Controller
         }       
         
         $validatedData = $request->validate([
-            'name' => 'required',
+            'nation' => 'required',
+            'district' => 'required',
             'available' => 'required',
+            'image' => 'image',
         ]);
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }             
+            $validatedData['image'] = $request->file('image')->store('Images');
+        }
         
         country::where('id',$country->id)
                 ->update($validatedData);
@@ -96,6 +110,9 @@ class CountryController extends Controller
      */
     public function destroy(country $country)
     {
+        if ($country->image) {
+            Storage::delete($country->image);
+        }
         country::destroy($country->id);
         return redirect('/base/country')->with('success','Data Dihapus');
     }

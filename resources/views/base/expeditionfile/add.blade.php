@@ -7,7 +7,7 @@
         <div class="mdc-card">
           <h6 class="card-title">Add Expedition</h6>
           <div class="template-demo">
-            <form action="{{ url('/base/expedition/add') }}" method="post" class="mt-4">
+            <form action="{{ url('/base/expedition/add') }}" method="post" class="mt-4" enctype="multipart/form-data">
               @csrf
               <div class="row g-3">
                 <div class="col-md-4">
@@ -26,7 +26,15 @@
                   </div>
                 </div>           
               </div>
-              
+              <div style="width: 300px">
+                <label for="iamge" class="form-label">Image</label>
+                {{-- img preview css dan onchange bikin sendiri --}}
+                <img class="img-preview img-fluid">
+                <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
+                @error('image')
+                  <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+              </div>
               <button type="submit" class="mdc-button mdc-button--outlined mdc-button--dense mdc-ripple-upgraded mt-4">
                 Submit
               </button>
