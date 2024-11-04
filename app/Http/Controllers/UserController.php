@@ -72,6 +72,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        user::destroy($user->id);
+        return redirect('/base/user')->with('success','Data Dihapus');
     }
 }

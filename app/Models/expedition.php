@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class expedition extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'available',
+        'image',
+    ];
 }

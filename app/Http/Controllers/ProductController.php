@@ -25,7 +25,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view("base.productfile.add",[
+            "title" => "FOBC ASIA Admin || Product",
+            "pages" => "Add Product Page",
+        ]);
     }
 
     /**
@@ -33,7 +36,23 @@ class ProductController extends Controller
      */
     public function store(StoreproductRequest $request)
     {
-        //
+        
+        if (!isset($request->available)) {
+            $request->merge(['available' => 0]);
+        } else {
+            $request->merge(['available' => 1]);
+        }       
+        // dd($request);
+        $price = (int) $request->input('price');
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'available' => 'required',
+        ]);        
+        $validatedData['price'] = $price;
+        
+        product::create($validatedData);
+        return redirect('/base/product')->with('success','Data Ditambahkan');
     }
 
     /**
@@ -49,7 +68,11 @@ class ProductController extends Controller
      */
     public function edit(product $product)
     {
-        //
+        return view("base.productfile.edit",[
+            "title" => "FOBC ASIA Admin || Product",
+            "pages" => "Edit Product Page",
+            "product" => $product,
+        ]);
     }
 
     /**
@@ -57,7 +80,24 @@ class ProductController extends Controller
      */
     public function update(UpdateproductRequest $request, product $product)
     {
-        //
+
+        if (!isset($request->available)) {
+            $request->merge(['available' => 0]);
+        } else {
+            $request->merge(['available' => 1]);
+        }       
+        
+        $price = (int) $request->input('price');
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'available' => 'required',
+        ]);        
+        $validatedData['price'] = $price;
+        
+        product::where('id',$product->id)
+                ->update($validatedData);
+        return redirect('/base/product')->with('success','Data Diubah');
     }
 
     /**
@@ -65,6 +105,7 @@ class ProductController extends Controller
      */
     public function destroy(product $product)
     {
-        //
+        product::destroy($product->id);
+        return redirect('/base/product')->with('success','Data Dihapus');
     }
 }

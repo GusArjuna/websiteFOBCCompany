@@ -31,26 +31,30 @@
             <table class="table table-hoverable">
               <thead>
                 <tr>
-                  <th style="width: 50px;">No</th>
-                  <th class="text-left">Name</th>
-                  <th>Status</th>
+                  <th class="text-left">Nation</th>
+                  <th>District</th>
+                  <th>Image</th>
+                  <th>Available</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($countries as $country)
                   <tr>
-                    <td style="width: 50px;">{{ $loop->iteration }}</td>
-                    <td class="text-left">{{ $country->name }}</td>
+                    <td class="text-left">{{ $country->nation }}</td>
+                    <td>{{ $country->district }}</td>                
+                    <td></td>                
                     <td>
-                      {!! $country->status == 'on' ? '<p class="mdc-typography mdc-theme--success">Active</p>' : '<p class="mdc-typography mdc-theme--danger">Inactive</p>' !!}
-                    </td>                  
+                      {!! $country->available == 1 ? '<p class="mdc-typography mdc-theme--success">Active</p>' : '<p class="mdc-typography mdc-theme--danger">Inactive</p>' !!}
+                    </td>  
                     <td class="text-right">
-                      <a href="/base/country/{{ $country->id }}" class="mdc-button mdc-button--raised icon-button filled-button--warning mr-2">
+                      <a href="/base/country/{{ $country->id }}/edit" class="mdc-button mdc-button--raised icon-button filled-button--warning mr-2">
                         <i class="material-icons mdc-button__icon">colorize</i>
                       </a>
                       <form action="/base/country/{{ $country->id }}/delete" method="post" class="d-inline">
-                        <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
+                        @csrf
+                        @method('delete')
+                        <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" type="submit" onclick="return confirm('Sure?');">
                           <i class="material-icons mdc-button__icon">delete</i>
                         </button>
                       </form>

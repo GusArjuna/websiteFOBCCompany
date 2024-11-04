@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('compro.dashboard',[
-        "title" => "Dashboard"
-    ]);
-});
+// Route::get('/', function () {
+//     return view('compro.dashboard',[
+//         "title" => "Dashboard"
+//     ]);
+// });
 
 Route::controller(comproDashboardController::class)->group(function () {
     Route::get('/', 'index');
@@ -46,18 +46,36 @@ Route::controller(baseDashboard::class)->group(function () {
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('/base/product', 'index')->middleware('auth');
+    Route::get('/base/product/add', 'create')->middleware('auth');
+    Route::post('/base/product/add', 'store')->middleware('auth');
+    Route::get('/base/product/{product}/edit', 'edit')->middleware('auth');
+    Route::patch('/base/product/{product}', 'update')->middleware('auth');
+    Route::delete('/base/product/{product}/delete', 'destroy')->middleware('auth');
 });
 
 Route::controller(ExpeditionController::class)->group(function () {
     Route::get('/base/expedition', 'index')->middleware('auth');
+    Route::get('/base/expedition/add', 'create')->middleware('auth');
+    Route::post('/base/expedition/add', 'store')->middleware('auth');
+    Route::get('/base/expedition/{expedition}/edit', 'edit')->middleware('auth');
+    Route::patch('/base/expedition/{expedition}', 'update')->middleware('auth');
+    Route::delete('/base/expedition/{expedition}/delete', 'destroy')->middleware('auth');
 });
 
 Route::controller(CountryController::class)->group(function () {
     Route::get('/base/country', 'index')->middleware('auth');
+    Route::get('/base/country/add', 'create')->middleware('auth');
+    Route::post('/base/country/add', 'store')->middleware('auth');
+    Route::get('/base/country/{country}/edit', 'edit')->middleware('auth');
+    Route::patch('/base/country/{country}', 'update')->middleware('auth');
+    Route::delete('/base/country/{country}/delete', 'destroy')->middleware('auth');
 });
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/base/user', 'index')->middleware('auth');
     Route::get('/base/user/add', 'create')->middleware('auth');
     Route::post('/base/user/add', 'store')->middleware('auth');
+    Route::get('/base/user/{user}/edit', 'edit')->middleware('auth');
+    Route::patch('/base/user/{user}', 'update')->middleware('auth');
+    Route::delete('/base/user/{user}/delete', 'destroy')->middleware('auth');
 });

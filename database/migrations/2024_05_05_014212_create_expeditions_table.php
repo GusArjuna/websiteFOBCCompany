@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('expeditions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('status');
+            $table->string('image')->nullable();
+            $table->string('available');
             $table->timestamps();
         });
     }

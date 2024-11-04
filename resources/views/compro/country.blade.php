@@ -75,56 +75,17 @@
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/auckland.jpeg')}}" class="img-fluid" style="height: 300px; width:400px" alt="">
-            <div class="member-content">
-              <h4>Auckland</h4>
-              <span>New Zealand</span>
+        @foreach ($countries as $country)
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="member">
+              <img src="{{ url('CP/img/auckland.jpeg')}}" class="img-fluid" style="height: 300px; width:400px" alt="">
+              <div class="member-content">
+                <h4>{{ $country->district }}</h4>
+                <span>{{ $country->nation }}</span>
+              </div>
             </div>
-          </div>
-        </div><!-- End Team Member -->
-
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/miami.png')}}" class="img-fluid" style="height: 300px; width:400px" alt="">
-            <div class="member-content">
-              <h4>Miami</h4>
-              <span>Florida</span>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
-
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/australia.jpg')}}" class="img-fluid" style="height: 300px; width:400px" alt="">
-            <div class="member-content">
-              <h4>Australia</h4>
-              <span>Australia</span>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
-        
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/pago pago.png')}}" class="img-fluid" style="height: 300px; width:400px" alt="">
-            <div class="member-content">
-              <h4>Pago pago</h4>
-              <span>American Samoa</span>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
-
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/honolulu.png')}}" class="img-fluid" style="height: 300px; width:400px" alt="">
-            <div class="member-content">
-              <h4>Honolulu</h4>
-              <span>Hawaii</span>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
-
+          </div><!-- End Team Member -->
+        @endforeach
       </div>
 
     </div>

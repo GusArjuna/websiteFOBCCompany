@@ -25,7 +25,10 @@ class ExpeditionController extends Controller
      */
     public function create()
     {
-        //
+        return view("base.expeditionfile.add",[
+            "title" => "FOBC ASIA Admin || Product",
+            "pages" => "Add Expedition Page",
+        ]);
     }
 
     /**
@@ -33,7 +36,19 @@ class ExpeditionController extends Controller
      */
     public function store(StoreexpeditionRequest $request)
     {
-        //
+        if (!isset($request->available)) {
+            $request->merge(['available' => 0]);
+        } else {
+            $request->merge(['available' => 1]);
+        }       
+        $validatedData = $request->validate([
+            'nation' => 'required',
+            'district' => 'required',
+            'available' => 'required',
+        ]);
+        
+        expedition::create($validatedData);
+        return redirect('/base/expedition')->with('success','Data Ditambahkan');
     }
 
     /**
@@ -49,7 +64,11 @@ class ExpeditionController extends Controller
      */
     public function edit(expedition $expedition)
     {
-        //
+        return view("base.expeditionfile.edit",[
+            "title" => "FOBC ASIA Admin || Product",
+            "pages" => "Add Expedition Page",
+            "expedition" => $expedition,
+        ]);
     }
 
     /**
@@ -57,7 +76,21 @@ class ExpeditionController extends Controller
      */
     public function update(UpdateexpeditionRequest $request, expedition $expedition)
     {
-        //
+        if (!isset($request->available)) {
+            $request->merge(['available' => 0]);
+        } else {
+            $request->merge(['available' => 1]);
+        }       
+        
+        $validatedData = $request->validate([
+            'nation' => 'required',
+            'district' => 'required',
+            'available' => 'required',
+        ]);
+        
+        expedition::where('id',$expedition->id)
+                ->update($validatedData);
+        return redirect('/base/expedition')->with('success','Data Diubah');
     }
 
     /**
@@ -65,6 +98,7 @@ class ExpeditionController extends Controller
      */
     public function destroy(expedition $expedition)
     {
-        //
+        expedition::destroy($expedition->id);
+        return redirect('/base/expedition')->with('success','Data Dihapus');
     }
 }

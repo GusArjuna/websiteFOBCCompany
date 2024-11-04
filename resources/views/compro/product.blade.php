@@ -75,44 +75,20 @@
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/frozen.png')}}" class="img-fluid" alt="" style="height: 250px; width:400px">
-            <div class="member-content">
-              <h4>Frozen Fish</h4>
-              <span>Start From Rp. xxxx / box</span>
-              <p>
-                The price may fluctuate depending on consumer demand and the timing of pre-orders.
-              </p>
+        @foreach ($products as $product)
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="member">
+              <img src="{{ url('CP/img/frozen.png')}}" class="img-fluid" alt="" style="height: 250px; width:400px">
+              <div class="member-content">
+                <h4>{{ $product->name }}</h4>
+                <span>Start From Rp. {{ $product->price }} / box</span>
+                <p>
+                  The price may fluctuate depending on consumer demand and the timing of pre-orders.
+                </p>
+              </div>
             </div>
           </div>
-        </div><!-- End Team Member -->
-
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/seafood.png')}}" class="img-fluid" alt="" style="height: 250px; width:400px">
-            <div class="member-content">
-              <h4>Seafoods</h4>
-              <span>Start From Rp. xxxx / box</span>
-              <p>
-                The price may fluctuate depending on consumer demand and the timing of pre-orders.
-              </p>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
-
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/frozenbait.png')}}" class="img-fluid" alt="" style="height: 250px; width:400px">
-            <div class="member-content">
-              <h4>Frozen Bait Fish</h4>
-              <span>Start From Rp. xxxx / box</span>
-              <p>
-                The price may fluctuate depending on consumer demand and the timing of pre-orders.
-              </p>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
+        @endforeach
 
       </div>
 

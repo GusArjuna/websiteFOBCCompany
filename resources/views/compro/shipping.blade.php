@@ -75,53 +75,19 @@
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/maersk.jpg')}}" class="img-fluid" alt="">
-            <div class="member-content">
-              <h4>Maersk Line</h4>
-              <p>
-                Contact us to inquire about the estimated shipping costs and arrival times.
-              </p>
+        @foreach ($expeditions as $expedition)
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="member">
+              <img src="{{ url('CP/img/maersk.jpg')}}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>{{ $expedition->name }}</h4>
+                <p>
+                  Contact us to inquire about the estimated shipping costs and arrival times.
+                </p>
+              </div>
             </div>
-          </div>
-        </div><!-- End Team Member -->
-
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/oocl.jpg')}}" class="img-fluid" alt="">
-            <div class="member-content">
-              <h4>Orient Overseas Container Line (OOCL)</h4>
-              <p>
-                Contact us to inquire about the estimated shipping costs and arrival times.
-              </p>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
-
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/cmacgm.jpg')}}" class="img-fluid" alt="">
-            <div class="member-content">
-              <h4>Compagnie Maritime d'Affrètement and Compagnie Générale Maritime (CMA CGM)</h4>
-              <p>
-                Contact us to inquire about the estimated shipping costs and arrival times.
-              </p>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
-        
-        <div class="col-lg-4 col-md-6 d-flex">
-          <div class="member">
-            <img src="{{ url('CP/img/pillines.jpg')}}" class="img-fluid" alt="">
-            <div class="member-content">
-              <h4>Pacific International Lines (PIL Lines)</h4>
-              <p>
-                Contact us to inquire about the estimated shipping costs and arrival times.
-              </p>
-            </div>
-          </div>
-        </div><!-- End Team Member -->
+          </div><!-- End Team Member -->
+        @endforeach
 
       </div>
 

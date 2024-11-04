@@ -46,11 +46,13 @@
                       {!! $user->status == 'on' ? '<p class="mdc-typography mdc-theme--success">Active</p>' : '<p class="mdc-typography mdc-theme--danger">Inactive</p>' !!}
                     </td>                  
                     <td class="text-right">
-                      <a href="/base/user/{{ $user->id }}" class="mdc-button mdc-button--raised icon-button filled-button--warning mr-2">
+                      {{-- <a href="/base/user/{{ $user->id }}" class="mdc-button mdc-button--raised icon-button filled-button--warning mr-2">
                         <i class="material-icons mdc-button__icon">colorize</i>
-                      </a>
+                      </a> --}}
                       <form action="/base/user/{{ $user->id }}/delete" method="post" class="d-inline">
-                        <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
+                        @csrf
+                        @method('delete')
+                        <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" type="submit" onclick="return confirm('Sure?');">
                           <i class="material-icons mdc-button__icon">delete</i>
                         </button>
                       </form>

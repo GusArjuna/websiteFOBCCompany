@@ -25,7 +25,10 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view("base.countryfile.add",[
+            "title" => "FOBC ASIA Admin || Product",
+            "pages" => "Add Country Page",
+        ]);
     }
 
     /**
@@ -33,7 +36,18 @@ class CountryController extends Controller
      */
     public function store(StorecountryRequest $request)
     {
-        //
+        if (!isset($request->available)) {
+            $request->merge(['available' => 0]);
+        } else {
+            $request->merge(['available' => 1]);
+        }       
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'available' => 'required',
+        ]);
+        
+        country::create($validatedData);
+        return redirect('/base/country')->with('success','Data Ditambahkan');
     }
 
     /**
@@ -49,7 +63,11 @@ class CountryController extends Controller
      */
     public function edit(country $country)
     {
-        //
+        return view("base.countryfile.edit",[
+            "title" => "FOBC ASIA Admin || Product",
+            "pages" => "Edit Country Page",
+            "country" => $country,
+        ]);
     }
 
     /**
@@ -57,7 +75,20 @@ class CountryController extends Controller
      */
     public function update(UpdatecountryRequest $request, country $country)
     {
-        //
+        if (!isset($request->available)) {
+            $request->merge(['available' => 0]);
+        } else {
+            $request->merge(['available' => 1]);
+        }       
+        
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'available' => 'required',
+        ]);
+        
+        country::where('id',$country->id)
+                ->update($validatedData);
+        return redirect('/base/country')->with('success','Data Diubah');
     }
 
     /**
@@ -65,6 +96,7 @@ class CountryController extends Controller
      */
     public function destroy(country $country)
     {
-        //
+        country::destroy($country->id);
+        return redirect('/base/country')->with('success','Data Dihapus');
     }
 }
