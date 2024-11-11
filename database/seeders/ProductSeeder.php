@@ -14,11 +14,11 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['Sardines',6500,12000,150,20000,90,1],
-            ['Baby Octopus',98000,120000,150,20000,90,1],
-            ['Milk Fish',15000,22000,150,20000,90,1],
-            ['Vannamei Shirmp',95000,110000,150,20000,90,1],
-            ['Dorry Fillet',25000,35000,150,20000,90,1],
+            ['Sardines',6500,12000,150,20000,30,1],
+            ['Baby Octopus',98000,120000,150,20000,30,1],
+            ['Milk Fish',15000,22000,150,20000,30,1],
+            ['Vannamei Shirmp',95000,110000,150,20000,30,1],
+            ['Dorry Fillet',25000,35000,150,20000,30,1],
         ];
         
         
@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
                 'sell' => $item[2],
                 'storageCosts' => $item[3],
                 'safetyStock' => $item[4],
-                'lifetime' => $item[5],
+                'leadtime' => $item[5],
                 'available' => $item[6],
             ]);
         }

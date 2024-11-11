@@ -28,6 +28,7 @@
           <div class="alert alert-success">{{ session('success') }}</div>
           @endif
           <div class="table-responsive">
+            {{ $users->links('pagination') }}
             <table class="table table-hoverable">
               <thead>
                 <tr>

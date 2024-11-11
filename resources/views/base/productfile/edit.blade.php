@@ -58,9 +58,9 @@
               </div>
               <div class="col-md-4">
                   <div class="form-floating">
-                      <input type="number" class="form-control form-control-sm mb-3" placeholder="" name="lifetime" value="{{ old('lifetime',$product->lifetime) }}" required>
-                      <label for="">Lifetime</label>
-                      @error('lifetime')
+                      <input type="number" class="form-control form-control-sm mb-3" placeholder="" name="leadtime" value="{{ old('leadtime',$product->leadtime) }}" required>
+                      <label for="">Leadtime</label>
+                      @error('leadtime')
                         <div class="alert alert-danger">{{ $message }}</div>
                       @enderror
                   </div>

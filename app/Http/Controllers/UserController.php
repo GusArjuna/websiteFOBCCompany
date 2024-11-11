@@ -15,7 +15,7 @@ class UserController extends Controller
         return view("base.userfile.home",[
             "title" => "FOBC ASIA Admin || User Admin",
             "pages" => "User Admin",
-            "users" => User::all(),
+            "users" => User::paginate(10),
         ]);
     }
 

@@ -95,7 +95,7 @@
               </div>
             </div>
             <div class="divider d-none d-md-block"></div>
-            <div class="menu-button-container">
+            {{-- <div class="menu-button-container">
               <button class="mdc-button mdc-menu-button">
                 <i class="mdi mdi-email"></i>
                 <span class="count-indicator">
@@ -114,7 +114,7 @@
                   </li>              
                 </ul>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
       </header>

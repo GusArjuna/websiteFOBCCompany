@@ -17,7 +17,7 @@ class ExpeditionController extends Controller
         return view("base.expeditionfile.home",[
             "title" => "FOBC ASIA Admin || Expedition",
             "pages" => "Expedition Page",
-            "Expeditions" => expedition::all(),
+            "Expeditions" => expedition::paginate(10),
         ]);
     }
 

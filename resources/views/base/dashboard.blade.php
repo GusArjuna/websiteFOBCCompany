@@ -27,7 +27,7 @@
                                 <th class="text-left">Name</th>
                                 <th>Purchase Price</th>
                                 <th>Selling Price</th>
-                                <th>Lifetime</th>
+                                <th>Leadtime</th>
                                 <th>Holding Cost</th>
                                 <th>Demand</th>
                                 <th>ROP</th>
@@ -40,7 +40,7 @@
                                   <td class="text-left">{{ $product->name }}</td>                               
                                   <td >{{ $product->purchase }}</td>                
                                   <td >{{ $product->sell }}</td>                
-                                  <td >{{ $product->lifetime }}</td>                
+                                  <td >{{ $product->leadtime }}</td>                
                                   <td >{{ $product->storageCosts }}</td>                
                                   <td >@if (isset($product->eoq->rop))
                                     {{ $product->eoq->demand }}
@@ -51,14 +51,14 @@
                                     @if (isset($product->eoq->rop))
                                     {{ $product->eoq->rop }}
                                     @else
-                                    EOQ belum di Generate
+                                    Repeat Order has not been generated
                                     @endif  
                                   </td>                
                                   <td >
                                     @if (isset($product->eoq->eoqs))
                                     {{ $product->eoq->eoqs }}
                                     @else
-                                    EOQ belum di Generate
+                                    Economic Order Quantity has not been generated
                                     @endif   
                                   </td>                
                                 </tr>

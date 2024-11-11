@@ -17,7 +17,7 @@ class ProductController extends Controller
             return view("base.productfile.home",[
                 "title" => "FOBC ASIA Admin || Product",
                 "pages" => "Product Page",
-                "products" => product::all(),
+                "products" => product::paginate(10),
             ]);
     }
 
@@ -50,7 +50,7 @@ class ProductController extends Controller
             'sell' => 'required',
             'storageCosts' => 'required',
             'safetyStock' => 'required',
-            'lifetime' => 'required',
+            'leadtime' => 'required',
             'available' => 'required',
             'image' => 'image',
         ]);        
@@ -100,7 +100,7 @@ class ProductController extends Controller
             'sell' => 'required',
             'storageCosts' => 'required',
             'safetyStock' => 'required',
-            'lifetime' => 'required',
+            'leadtime' => 'required',
             'available' => 'required',
             'image' => 'image',
         ]);        

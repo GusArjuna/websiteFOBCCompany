@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class baseDashboard extends Controller
 {
     public function dashboard(){
-        $products = product::paginate(15);
+        $products = product::paginate(10);
         return view("base.dashboard",[
             "title" => "FOBC ASIA Admin || Dashboard",
             "pages" => "Dashboard Page",
@@ -39,7 +39,7 @@ class baseDashboard extends Controller
 
         foreach ($validatedData['demand'] as $productName => $demandValue) {
             $product = $products->firstWhere('name', $productName);
-            $rop=round($product->safetyStock + (($demandValue / $daysTotal) * 30), 3);
+            $rop=round($product->safetyStock + (($demandValue / $daysTotal) * $product->leadtime), 3);
             $eoq=round(sqrt((2 * $product->purchase * $demandValue) / ($product->storageCosts*$daysTotal)), 3);
             eoq::create([
                 'name'=> $productName,

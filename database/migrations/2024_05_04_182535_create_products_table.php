@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('sell');
             $table->integer('storageCosts');
             $table->integer('safetyStock');
-            $table->integer('lifetime');
+            $table->integer('leadtime');
             $table->boolean('available');
             $table->timestamps();
         });
