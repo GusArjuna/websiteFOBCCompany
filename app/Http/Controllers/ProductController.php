@@ -46,7 +46,11 @@ class ProductController extends Controller
         $price = (int) $request->input('price');
         $validatedData = $request->validate([
             'name' => 'required',
-            'price' => 'required',
+            'purchase' => 'required',
+            'sell' => 'required',
+            'storageCosts' => 'required',
+            'safetyStock' => 'required',
+            'lifetime' => 'required',
             'available' => 'required',
             'image' => 'image',
         ]);        
@@ -90,13 +94,15 @@ class ProductController extends Controller
         } else {
             $request->merge(['available' => 1]);
         }       
-        
-        $price = (int) $request->input('price');
         $validatedData = $request->validate([
             'name' => 'required',
-            'price' => 'required',
-            'image' => 'image',
+            'purchase' => 'required',
+            'sell' => 'required',
+            'storageCosts' => 'required',
+            'safetyStock' => 'required',
+            'lifetime' => 'required',
             'available' => 'required',
+            'image' => 'image',
         ]);        
         if ($request->file('image')) {
             if ($request->oldImage) {
@@ -104,7 +110,6 @@ class ProductController extends Controller
             }             
             $validatedData['image'] = $request->file('image')->store('Images');
         }
-        $validatedData['price'] = $price;
         
         product::where('id',$product->id)
                 ->update($validatedData);

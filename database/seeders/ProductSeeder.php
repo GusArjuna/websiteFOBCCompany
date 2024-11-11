@@ -14,18 +14,23 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['Black Tuna','1000000','1'],
-            ['White Tuna','1000000','1'],
-            ['Brown Tuna','1000000','1'],
-            ['Yellow Tuna','1000000','1'],
-            ['Purple Tuna','1000000','1'],
+            ['Sardines',6500,12000,150,20000,90,1],
+            ['Baby Octopus',98000,120000,150,20000,90,1],
+            ['Milk Fish',15000,22000,150,20000,90,1],
+            ['Vannamei Shirmp',95000,110000,150,20000,90,1],
+            ['Dorry Fillet',25000,35000,150,20000,90,1],
         ];
-
+        
+        
         foreach ($data as $item) {
             product::create([
                 'name' => $item[0],
-                'price' => $item[1],
-                'available' => $item[2]
+                'purchase' => $item[1],
+                'sell' => $item[2],
+                'storageCosts' => $item[3],
+                'safetyStock' => $item[4],
+                'lifetime' => $item[5],
+                'available' => $item[6],
             ]);
         }
     }

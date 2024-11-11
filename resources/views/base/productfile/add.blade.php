@@ -21,14 +21,50 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating">
-                        <input type="number" class="form-control form-control-sm mb-3" placeholder="" name="price" value="{{ old('price') }}" required>
-                        <label for="">Price</label>
-                        @error('price')
+                        <input type="number" class="form-control form-control-sm mb-3" placeholder="" name="purchase" value="{{ old('purchase') }}" required>
+                        <label for="">Purchase Price</label>
+                        @error('purchase')
                           <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-4 d-flex align-items-center justify-content-start">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="number" class="form-control form-control-sm mb-3" placeholder="" name="sell" value="{{ old('sell') }}" required>
+                        <label for="">Sell Price</label>
+                        @error('sell')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="number" class="form-control form-control-sm mb-3" placeholder="" name="storageCosts" value="{{ old('storageCosts') }}" required>
+                        <label for="">Storage Cost</label>
+                        @error('storageCosts')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="number" class="form-control form-control-sm mb-3" placeholder="" name="safetyStock" value="{{ old('safetyStock') }}" required>
+                        <label for="">Safety Stock</label>
+                        @error('safetyStock')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="number" class="form-control form-control-sm mb-3" placeholder="" name="lifetime" value="{{ old('lifetime') }}" required>
+                        <label for="">Lifetime</label>
+                        @error('lifetime')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex align-items-center justify-content-start">
                   <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" role="switch" id="available" name="available">
                       <label class="form-check-label" for="available">Is Available</label>

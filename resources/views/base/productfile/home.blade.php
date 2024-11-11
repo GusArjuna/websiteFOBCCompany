@@ -33,7 +33,9 @@
                 <tr>
                   <th class="text-left">Name</th>
                   <th class="text-left">Photo</th>
-                  <th class="text-left">Price</th>
+                  <th class="text-left">Purchase Price</th>
+                  <th class="text-left">Sell Price</th>
+                  <th>Lifetime</th>
                   <th>Available</th>
                   <th>Action</th>
                 </tr>
@@ -49,7 +51,9 @@
                           <img src="{{ url('CP/img/frozen.png') }}" alt="" style="width: 150px">
                       @endif
                     </td>                                
-                    <td class="text-left">{{ $product->price }}</td>                  
+                    <td class="text-left">{{ $product->purchase }} /Kg</td>                  
+                    <td class="text-left">{{ $product->sell }} /Kg</td>                  
+                    <td>{{ $product->lifetime }} days</td>                  
                     <td>
                       {!! $product->available == 1 ? '<p class="mdc-typography mdc-theme--success">Available</p>' : '<p class="mdc-typography mdc-theme--danger">Not Available</p>' !!}
                     </td>                  

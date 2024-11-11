@@ -85,7 +85,7 @@
               @endif
               <div class="member-content">
                 <h4>{{ $product->name }}</h4>
-                <span>Start From Rp. {{ $product->price }} / box</span>
+                <span>Start From Rp. {{ $product->price }} / Kg</span>
                 <p>
                   The price may fluctuate depending on consumer demand and the timing of pre-orders.
                 </p>

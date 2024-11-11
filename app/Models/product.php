@@ -10,8 +10,16 @@ class product extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'price',
+        'purchase',
+        'sell',
+        'storageCosts',
+        'safetyStock',
+        'lifetime',
         'available',
         'image',
     ];
+
+    public function eoq(){
+        return $this->hasOne(eoq::class, 'name', 'name');
+    }
 }

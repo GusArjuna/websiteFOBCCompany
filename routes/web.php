@@ -20,12 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('compro.dashboard',[
-//         "title" => "Dashboard"
-//     ]);
-// });
-
 Route::controller(comproDashboardController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/products', 'product');
@@ -42,6 +36,8 @@ Route::controller(LoginController::class)->group(function () {
 
 Route::controller(baseDashboard::class)->group(function () {
     Route::get('/base/dashboard', 'dashboard')->middleware('auth');
+    Route::get('/base/eoq', 'create')->middleware('auth');
+    Route::post('/base/eoq', 'store')->middleware('auth');
 });
 
 Route::controller(ProductController::class)->group(function () {
