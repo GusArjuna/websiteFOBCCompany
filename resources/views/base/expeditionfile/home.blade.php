@@ -5,9 +5,6 @@
   <input class="mdc-text-field__input" id="text-field-hero-input">
   <div class="mdc-notched-outline">
     <div class="mdc-notched-outline__leading"></div>
-    <div class="mdc-notched-outline__notch">
-      <label for="text-field-hero-input" class="mdc-floating-label">Search..</label>
-    </div>
     <div class="mdc-notched-outline__trailing"></div>
   </div>
 </div>

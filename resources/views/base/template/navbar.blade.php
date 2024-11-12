@@ -55,6 +55,12 @@
                 User
               </a>
             </div>
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-drawer-link" href="{{ url('/base/order') }}">
+                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">mail</i>
+                Order
+              </a>
+            </div>
           </nav>
         </div>
       </div>

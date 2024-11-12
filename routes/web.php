@@ -5,6 +5,7 @@ use App\Http\Controllers\comproDashboardController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ExpeditionController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::controller(comproDashboardController::class)->group(function () {
     Route::get('/shipping', 'shipping');
     Route::get('/country', 'country');
     Route::get('/makeadeal', 'makeadeal');
+    Route::post('/makeadeal', 'makeadealSubmit');
 });
 
 Route::controller(LoginController::class)->group(function () {
@@ -74,4 +76,10 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/base/user/{user}/edit', 'edit')->middleware('auth');
     Route::patch('/base/user/{user}', 'update')->middleware('auth');
     Route::delete('/base/user/{user}/delete', 'destroy')->middleware('auth');
+});
+
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/base/order', 'index')->middleware('auth');
+    Route::get('/base/order/{regisOrder}/show', 'show')->middleware('auth');
+    Route::delete('/base/order/{regisOrder}/delete', 'destroy')->middleware('auth');
 });

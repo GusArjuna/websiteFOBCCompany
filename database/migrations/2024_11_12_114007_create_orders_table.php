@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('nation');
-            $table->string('district')->unique();
-            $table->string('image')->nullable();
-            $table->string('available');
+            $table->integer('regisOrder');
+            $table->integer('quantity');
+            $table->string('product');
             $table->timestamps();
+
+            $table->foreign('regisOrder')->references('regisOrder')->on('regis_orders')->onDelete('cascade');
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('orders');
     }
 };

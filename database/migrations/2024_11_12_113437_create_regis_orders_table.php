@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('regis_orders', function (Blueprint $table) {
             $table->id();
-            $table->string('nation');
-            $table->string('district')->unique();
-            $table->string('image')->nullable();
-            $table->string('available');
+            $table->integer('regisOrder')->unique();
+            $table->string('name');
+            $table->string('email');
+            $table->string('destination');
+            $table->date('date');
+            $table->string('handphone');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('regis_orders');
     }
 };

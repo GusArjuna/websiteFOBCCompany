@@ -24,50 +24,62 @@
     </nav>
   </div><!-- End Breadcrumbs -->
   <div class="container mt-5">
-    
-    <form action="/buyFracture/datain" method="post">
-        @csrf
-        <div class="row g-3">
-            <p>Your Identity</p>
-            <div class="col-md-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control mb-3"  placeholder="" name="customername" value="">
-                    <label for="">Name</label>
-                </div>
-            </div>
-            <div class="col-md-3">
+    @if (session()->has('success'))
+      <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+    <form action="/makeadeal" method="post" id="phoneForm">
+      @csrf
+      <div class="row g-3">
+          <p>Your Identity</p>
+          <div class="col-md-3">
               <div class="form-floating">
-                  <select class="form-control" aria-label=".form-select-sm example" name="destination" >
+                  <input type="text" class="form-control mb-3" placeholder="" name="name" value="" required autofocus>
+                  <label for="">Name</label>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="form-floating">
+                  <input type="email" class="form-control mb-3" placeholder="" name="email" value="" required>
+                  <label for="">E-mail</label>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="form-floating">
+                  <select class="form-control" aria-label=".form-select-sm example" name="destination" required>
                       <option value="">- Choose -</option>
+                      @foreach ($countries as $country)
+                      <option {{ (old('destination')==$country->district)?"selected":"" }} value="{{ $country->district }}">{{ $country->district.' - '.$country->nation }}</option>
+                      @endforeach
                   </select>
                   <label>Destination</label>
                   @error('keterangan')
                       <div class="alert alert-danger"></div>
                   @enderror
               </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-floating">
-                    <input type="tel" style="height: 58px;" class="form-control mb-3"  placeholder="" name="handphone" value="" id="phone" pattern="\d"  required>
-                </div>
-            </div>
-            
-              <div id="inputdata">
-
+          </div>
+          <div class="col-md-3">
+              <div class="form-floating">
+                  <input type="tel" style="height: 58px;" class="form-control mb-3 phone-input" placeholder="Input Your Phone" id="phone" name="handphone_display" required>
+                  <input type="hidden" name="handphone" id="hiddenPhone">
               </div>
-              <div class="col-md-3">
-                  <button type="button" id="addBtn" class="btn btn-primary rounded-pill">
-                    <i class="bi bi-plus-circle-dotted"> Add Products</i>
-                  </button>
-              </div>
-              <div class="col-md-9">
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary mb-3">Submit</button>
-                <button type="reset" class="btn btn-secondary mb-3">Reset</button>
-              </div>
-        </div>
-    </form>
+          </div>
+          
+          <div id="inputdata">
+          </div>
+          <div class="col-md-3">
+              <button type="button" id="addBtn" class="btn btn-primary rounded-pill">
+                  <i class="bi bi-plus-circle-dotted"> Add Products</i>
+              </button>
+          </div>
+          <div class="col-md-9">
+          </div>
+          <div class="text-center">
+              <button type="submit" class="btn btn-primary mb-3">Submit</button>
+              <button type="reset" class="btn btn-secondary mb-3">Reset</button>
+          </div>
+      </div>
+  </form>
+  
   </div>
 
 </main><!-- End #main -->
@@ -76,46 +88,60 @@
 @section('java')
 <script>
 
-    function validateNumberInput(event) {
-        var key = event.keyCode || event.which;
-        var keyValue = String.fromCharCode(key);
-        var isValid = /^[0-9]+$/.test(keyValue);
+function validateNumberInput(event) {
+    var key = event.keyCode || event.which;
+    var keyValue = String.fromCharCode(key);
+    var isValid = /^[0-9]+$/.test(keyValue);
 
-        if (!isValid) {
-            event.preventDefault();
-        }
+    if (!isValid) {
+        event.preventDefault();
     }
+}
 
-    document.addEventListener('DOMContentLoaded', function () {
-        var phoneInput = document.getElementById('phone');
-        phoneInput.addEventListener('keypress', validateNumberInput);
+document.addEventListener("DOMContentLoaded", function() {
+    var phoneInput = document.getElementById('phone');
+    phoneInput.addEventListener('keypress', validateNumberInput);
+
+    var hiddenInput = document.getElementById('hiddenPhone');  
+    var phoneForm = document.getElementById('phoneForm');  
+    var iti = window.intlTelInput(phoneInput, {
+        initialCountry: "auto",
+        geoIpLookup: function(success, failure) {
+            fetch('https://ipinfo.io?token=<YOUR_TOKEN>', { method: 'get' })
+                .then(response => response.json())
+                .then((ipjson) => { success(ipjson.country); })
+                .catch(() => { success('US'); });
+        },
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
     });
 
-   document.addEventListener("DOMContentLoaded", function() {
-            var input = document.querySelector("#phone");
-            window.intlTelInput(input, {
-                // options here
-                initialCountry: "auto",
-                geoIpLookup: function(success, failure) {
-                    fetch('https://ipinfo.io?token=<YOUR_TOKEN>', { method: 'get' })
-                        .then(response => response.json())
-                        .then((ipjson) => { success(ipjson.country); })
-                        .catch(() => { success('US'); });
-                },
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-            });
-        });
-
+    phoneForm.addEventListener("submit", function(e) {
+        var fullNumber = iti.getNumber();
+        hiddenInput.value = fullNumber;
+    });
+});
 
   $('#addBtn').click(function (){
       let newInputan = `<div class="row g-3 mb-2">
                           <div class="col-md-3">
                             <div class="form-floating">
-                                <select class="form-control @error('food') is-invalid @enderror makanan" aria-label=".form-select-sm example" name="food[]" >
-                                    <option value="">- Pilih Salah Satu -</option>
+                                <select class="form-control @error('product') is-invalid @enderror makanan" aria-label=".form-select-sm example" name="product[]" required>
+                                    <option value="">- choose -</option>
+                                    @foreach ($products as $product)
+                                    <option {{ (old('product')==$product->name)?"selected":"" }} value="{{ $product->name }}">{{ $product->name }}</option>
+                                    @endforeach
                                 </select>
                                 <label>Product</label>
-                                @error('keterangan')
+                                @error('product')
+                                    <div class="alert alert-danger"></div>
+                                @enderror
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-floating">
+                                <input type="number" class="form-control mb-3"  placeholder="" name="quantity[]" value="" required>
+                                <label for="">Quantity</label>
+                                @error('quantity')
                                     <div class="alert alert-danger"></div>
                                 @enderror
                             </div>
